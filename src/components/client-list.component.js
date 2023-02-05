@@ -5,12 +5,12 @@ import {Link} from 'react-router-dom';
 
 const ClientData = props =>{
     return(
-        <tr>
-            <td>{props.clients.lname + ", " + props.clients.fname + " " + props.clients.mname}</td>
-            <td>{props.clients.address}</td>
-            <td>{props.clients.contact}</td>
+        <tr>           
+            <td><span className="fw-bold text-primary">{props.clients.lname + ", " + props.clients.fname + " " + props.clients.mname} </span> <br/>
+            <span className="fst-italic fw-light"> {props.clients.address} </span> <br />
+            <span className="fst-italic fw-lighter">{props.clients.contact}</span> </td>
             <td>
-                <Link to={'/loan/'+props.clients._id} className="btn btn-outline-info btn-sm">Loan</Link> &nbsp;
+                <Link to={'/loan/'+props.clients._id} className="btn btn-outline-info btn-sm mb-2">Loan Details</Link> <br/>
                 <Link to={'/edit/'+props.clients._id} className="btn btn-outline-success btn-sm">Edit</Link> &nbsp;
                 <a href="# " onClick={()=>{props.deleteClient(props.clients._id)}} className="btn btn-outline-danger btn-sm">Delete</a>
             </td>
@@ -60,14 +60,14 @@ export default class ClientList extends Component{
     render(){
         return(
             <div className="container bg-white p-3 mt-2 shadow-lg p-5 mb-5 bg-white rounded">                
-                <h1>CLient LIsts</h1>
+                <h3>Clients Lists</h3>
 
                 <table className="table table-bordered table-hover">
                     <thead>
                         <tr>
                         <th>Borrower's name</th>
-                        <th>Address</th>
-                        <th>Contact</th>
+                        {/* <th>Address</th>
+                        <th>Contact</th> */}
                         <th>Actions</th>
                         </tr>
                     </thead> 

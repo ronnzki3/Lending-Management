@@ -2,29 +2,34 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const loanSchema = new Schema({
+const paymentSchema = new Schema({
     client_id:{
         type: String,
         required: true,
         trim: true
     },
-    loantype:{
+    loan_id:{
+        type: String,
+        required: true,
+        trim: true
+    },
+    particular:{
         type: String,
         required: true,
         trim: true,
         uppercase: true,
     },
-    loanamount:{
+    debit:{
         type: Number,
         required: true,
         trim: true
     },
-    loanterm:{
+    credit:{
         type: Number,
-        required:true,
+        required: true,
         trim: true
     },
-    releasedate:{
+    paymentdate:{
         type:Date,
         required:true,
     }
@@ -33,6 +38,6 @@ const loanSchema = new Schema({
     timestamps:true
 });
 
-const Loan = mongoose.model('loan',loanSchema);
+const Payment = mongoose.model('payments',paymentSchema);
 
-module.exports = Loan;
+module.exports = Payment;
