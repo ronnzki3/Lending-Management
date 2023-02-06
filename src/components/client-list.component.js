@@ -10,9 +10,9 @@ const ClientData = props =>{
             <span className="fst-italic fw-light"> {props.clients.address} </span> <br />
             <span className="fst-italic fw-lighter">{props.clients.contact}</span> </td>
             <td>
-                <Link to={'/loan/'+props.clients._id} className="btn btn-outline-info btn-sm mb-2">Loan Details</Link> <br/>
-                <Link to={'/edit/'+props.clients._id} className="btn btn-outline-success btn-sm">Edit</Link> &nbsp;
-                <a href="# " onClick={()=>{props.deleteClient(props.clients._id)}} className="btn btn-outline-danger btn-sm">Delete</a>
+                <Link to={'/loan/'+props.clients._id} className="btn btn-outline-info btn-sm mt-2">Loan Details</Link> &nbsp;
+                <Link to={'/edit/'+props.clients._id} className="btn btn-outline-success btn-sm mt-2">Edit</Link> &nbsp;
+                <a href="# " onClick={()=>{props.deleteClient(props.clients._id)}} className="btn btn-outline-danger btn-sm mt-2">Delete</a>
             </td>
         </tr>       
     )

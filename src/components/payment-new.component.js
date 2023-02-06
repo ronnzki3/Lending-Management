@@ -111,7 +111,7 @@ export class PaymentNew extends Component{
                         <h3>New Payment</h3>
 
                         <span className='fw-lighter'>Client's Name:</span> <br/>
-                        <span className='fw-bold text-primary'>{this.state.lname}</span><br/>
+                        <span className='fw-bold text-primary'>{this.state.lname}</span>  &nbsp;
                         <span className='fw-bold fst-italic text-primary'>{this.state.fname}</span>
 
                         <br/><br/>
