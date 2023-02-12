@@ -12,7 +12,7 @@ const ClientData = props =>{
             <td>
                 <Link to={'/loan/'+props.clients._id} className="btn btn-outline-info btn-sm mt-2">Loan Details</Link> &nbsp;
                 <Link to={'/edit/'+props.clients._id} className="btn btn-outline-success btn-sm mt-2">Edit</Link> &nbsp;
-                <a href="# " onClick={()=>{props.deleteClient(props.clients._id)}} className="btn btn-outline-danger btn-sm mt-2">Delete</a>
+                <a href="#" onClick={()=>{props.deleteClient(props.clients._id)}} className="btn btn-outline-danger btn-sm mt-2">Delete</a>
             </td>
         </tr>       
     )
@@ -32,9 +32,9 @@ export default class ClientList extends Component{
 
 
     componentDidMount(){
-        axios.get('http://localhost:5000/client/')
+        axios.get('http://localhost:5000/client/lists')
             .then(res => {
-                this.setState({ clients : res.data });
+                this.setState({ clients : res.data });                
             })
             .catch(err =>{
                 console.log(err);
@@ -43,7 +43,7 @@ export default class ClientList extends Component{
 
 
     deleteClient(id){
-        axios.delete('http://localhost:5000/client/'+id)
+        axios.delete('http://localhost:5000/client/lists/'+id)
             .then( res => console.log(res.data))
             this.setState({
                 clients : this.state.clients.filter(el => el._id !== id)
@@ -57,8 +57,10 @@ export default class ClientList extends Component{
         })
     }
 
+    
+
     render(){
-        return(
+        return(         
             <div className="container bg-white p-3 mt-2 shadow-lg p-5 mb-5 bg-white rounded">                
                 <h3>Clients Lists</h3>
 

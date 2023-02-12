@@ -6,6 +6,10 @@ const mongoose = require('mongoose');
 const ClientRouter = require('./routes/client');
 const LoanRouter = require('./routes/loan');
 
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+
 require('dotenv').config();
 
 const app = express();
@@ -17,9 +21,25 @@ const port = process.env.PORT || 5000;
 mongoose.set('strictQuery', true);
 
 
+
 //middleware
-app.use(cors());
 app.use(express.json());
+app.use(cors({
+        origin: [process.env.CLIENT_URI],
+        methods: ["GET", "POST"],
+        credentials: true,
+}));
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(session({
+    key:"userKey",
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires : 60 * 60 * 24
+    }
+}));
 
 
 //mongodb connection

@@ -45,7 +45,7 @@ export class PaymentNew extends Component{
 
     componentDidMount(){    
 
-        axios.get('http://localhost:5000/client/'+this.props.params.id)
+        axios.get('http://localhost:5000/client/lists/'+this.props.params.id)
         .then(res => {
             this.setState({
                 client_id: res.data._id,
@@ -104,43 +104,45 @@ export class PaymentNew extends Component{
     render(){       
         
         return(
-            <div className="container w-50 shadow-lg p-5 mb-5 bg-white rounded">              
+            <div className='container-fluid bg-success bg-gradient p-5 vw-100'>
+                <div className="container w-50 shadow-lg p-5 mb-5 bg-white rounded">              
 
-                <form onSubmit={this.onSubmit}>               
-                <div id="client-container">         
-                        <h3>New Payment</h3>
+                    <form onSubmit={this.onSubmit}>               
+                    <div id="client-container">         
+                            <h3>New Payment</h3>
 
-                        <span className='fw-lighter'>Client's Name:</span> <br/>
-                        <span className='fw-bold text-primary'>{this.state.lname}</span>  &nbsp;
-                        <span className='fw-bold fst-italic text-primary'>{this.state.fname}</span>
+                            <span className='fw-lighter'>Client's Name:</span> <br/>
+                            <span className='fw-bold text-primary'>{this.state.lname}</span>  &nbsp;
+                            <span className='fw-bold fst-italic text-primary'>{this.state.fname}</span>
 
-                        <br/><br/>
+                            <br/><br/>
 
-                        <div className='form-group'>
-                            <label>Date</label>
-                            <DatePickerComponent  />
-                        </div>
-                        <br/>
-                        <div className='form-group'>
-                            <label>Particular</label>
-                            <input type="text" className='form-control' data-name="particular" onChange={this.onInputChange} required />
-                        </div>
-                        <br/>
-                        <div className='form-group'>
-                            <label>Debit</label>
-                            <input type="text" className='form-control' data-name="debit" onChange={this.onInputChange} />
-                        </div>
-                        <br/>
-                        <div className='form-group'>
-                            <label>Credit</label>
-                            <input type="text" className='form-control' data-name="credit" onChange={this.onInputChange} />
-                        </div>
-                        <br/>               
-                        <Link to={'/loan/'+this.state.client_id} className="btn btn-outline-danger btn-sm">Cancel</Link>
-                        <button type='submit'>Save Payment</button>                
-                </div> 
-                </form>
+                            <div className='form-group'>
+                                <label>Date</label>
+                                <DatePickerComponent  />
+                            </div>
+                            <br/>
+                            <div className='form-group'>
+                                <label>Particular</label>
+                                <input type="text" className='form-control' data-name="particular" onChange={this.onInputChange} required />
+                            </div>
+                            <br/>
+                            <div className='form-group'>
+                                <label>Debit</label>
+                                <input type="text" className='form-control' data-name="debit" onChange={this.onInputChange} />
+                            </div>
+                            <br/>
+                            <div className='form-group'>
+                                <label>Credit</label>
+                                <input type="text" className='form-control' data-name="credit" onChange={this.onInputChange} />
+                            </div>
+                            <br/>               
+                            <Link to={'/loan/'+this.state.client_id} className="btn btn-outline-danger btn-sm">Cancel</Link>
+                            <button type='submit'>Save Payment</button>                
+                    </div> 
+                    </form>
 
+                </div>
             </div>
         )
     }

@@ -52,7 +52,7 @@ export class LoanDetails extends Component{
 
     componentDidMount(){
         //fetch clients info
-        axios.get('http://localhost:5000/client/'+this.props.params.id)
+        axios.get('http://localhost:5000/client/lists/'+this.props.params.id)
             .then(res => {
                 this.setState({
                     client_id: res.data._id,
@@ -110,7 +110,7 @@ export class LoanDetails extends Component{
     render(){
         return(
             <div className="container w-100 p-3 mb-5 bg-white rounded">
-                    <Link to={'/'} className="btn btn-outline-success btn-sm"> Go Back </Link>
+                    <Link to={'/lists'} className="btn btn-outline-success btn-sm"> Go Back </Link>
                     <h3>Loan Details</h3>
 
                     <div className="d-flex flex-md-column shadow-lg flex-lg-row">

@@ -2,17 +2,43 @@ const router = require('express').Router();
 let Client = require('../models/client.model');
 let Loan = require('../models/loan.model');
 let Payment = require('../models/payment.model');
+let User= require('../models/user.model');
 
 
 //show all clients
-router.route('/').get((req, res)=>{
+router.route('/lists').get((req, res)=>{
     Client.find()
     .then(client => res.json(client))
     .catch( err => res.status(400).json(err));
 });
 
+//count all clients
+router.route('/lists/count').get((req, res)=>{
+    Client.countDocuments()
+    .then(count => res.json(count))
+    .catch( err => res.status(400).json(err));
+});
+
+
+//sum all clients loan,
+router.route('/lists/sum_all').get((req, res)=>{
+    Loan.aggregate(
+        [
+            {
+                $group:{
+                        _id : {$sum:"$loanamount"}
+                }
+            }
+        ]
+    )
+    .then(count => res.json(count))
+    .catch( err => res.status(400).json(err));
+});
+
+
+
 //show client details by id
-router.route('/:id').get((req, res)=>{
+router.route('/lists/:id').get((req, res)=>{
     Client.findById(req.params.id)
     .then(client => res.json(client))
     .catch(err => res.status(400).json(err));
@@ -27,9 +53,31 @@ router.route('/loan/:id').get((req, res)=>{
 });
 
 
+//find username and password
+router.route('/user/user-login').post((req, res) =>{
+    User.findOne({
+        username:req.body.username,
+        password:req.body.password
+    }).then(userd => 
+             {
+                req.session.user=userd,
+                res.json(userd)
+            }
+        )
+    .catch(err => res.status(400).json(err));
+});
+
+router.route('/dashbord').get((req, res)=>{
+    if(req.session.user){
+        res.json("login");
+    }else{
+        res.json("not");
+    }
+});
+
 
 //delete client
-router.route('/:id').delete((req,res)=>{
+router.route('/lists/:id').delete((req,res)=>{
     Client.findByIdAndDelete(req.params.id)
     .then( client => res.json('Client was deleted successfully.'))
     .catch( err => res.status(400).json(err));
@@ -82,6 +130,22 @@ router.route('/payment/new-payment/:id').post((req, res)=>{
     .then( pay => res.json(pay.client_id))
     .catch( err => res.status(400).json(err));
 
+});
+
+
+//add new user
+router.route('/user/new-user').post((req, res) => {
+    const username= req.body.username;
+    const password=req.body.password;
+
+    const newUser = new User({
+        username,
+        password,
+    });
+
+    newUser.save()
+    .then(user => res.json('User added'))
+    .catch(err => res.status(400).json(err));
 });
 
 

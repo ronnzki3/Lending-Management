@@ -87,7 +87,7 @@ export default class ClientNew extends Component{
 
         axios.post('http://localhost:5000/loan/new-loan',loanData)       
         .then(res =>
-                window.location="/"
+                window.location="/loan/"+id
             )
         .catch( err => console.log(err))
     }
@@ -109,7 +109,8 @@ export default class ClientNew extends Component{
     render(){       
         
         return(
-            <div className="container w-50 shadow-lg p-5 mb-5 bg-white rounded">              
+            <div className='container-fluid bg-success bg-gradient p-5 vw-100'>
+                <div className="container w-50 shadow-lg p-5 mb-5 bg-white rounded">              
 
                 <form onSubmit={this.onSubmit}>               
                 <div id="client-container">         
@@ -177,6 +178,7 @@ export default class ClientNew extends Component{
                 </div>
                 </form>
 
+                </div>
             </div>
         )
     }
