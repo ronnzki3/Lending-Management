@@ -25,7 +25,7 @@ export default class Dashboard extends Component{
                             <li className="list-group-item text-center">Active Borrowers</li>
                         </ul>
                         <div className="card-body">
-                            <a href="#" className="card-link text-end">See all</a>
+                            {/* <a href="#" className="card-link text-end">See all</a> */}
                         </div>
                     </div>
 
@@ -40,7 +40,7 @@ export default class Dashboard extends Component{
                             <li className="list-group-item">Monthly : <span className="fw-bold">P2,830,440.00</span></li>
                         </ul>
                         <div className="card-body">
-                            <a href="#" className="card-link text-end">See details</a>
+                            {/* <a href="#" className="card-link text-end">See details</a> */}
                         </div>
                     </div>
                     <div className="card mx-5" style={{width: "18rem"}}>                
@@ -53,7 +53,7 @@ export default class Dashboard extends Component{
                             <li className="list-group-item">Monthly : <span className="fw-bold text-danger">P115,060.00</span></li>
                         </ul>
                         <div className="card-body">
-                            <a href="#" className="card-link text-end">See details</a>
+                            {/* <a href="#" className="card-link text-end">See details</a> */}
                         </div>
                     </div>
 
