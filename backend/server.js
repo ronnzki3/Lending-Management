@@ -25,7 +25,7 @@ mongoose.set('strictQuery', true);
 //middleware
 app.use(express.json());
 app.use(cors({
-        origin: [process.env.CLIENT_URI],
+        origin: ["http://localhost:3001"],
         methods: ["GET", "POST"],
         credentials: true,
 }));
